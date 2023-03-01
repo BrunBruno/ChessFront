@@ -1,0 +1,166 @@
+@import "../../Variables.scss";
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 6.4rem;
+  transition: all 1s;
+  user-select: none;
+
+  &__background {
+    position: fixed;
+    $width: 4rem * 2 + 4.8rem * 4 + 0.4rem * 6 + 8rem;
+    width: $width;
+    height: 2rem;
+    left: calc(50% - ($width / 2));
+    top: 8rem;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    transition: all 1s;
+  }
+
+  @mixin header_item {
+    z-index: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.8rem;
+  }
+
+  &__logo {
+    @include header_item;
+    width: 24rem;
+    img {
+      object-fit: cover;
+      height: 8rem - 1.6rem * 2;
+    }
+  }
+
+  &__navigation {
+    @include header_item;
+    position: relative;
+    width: 4rem * 2 + 4.8rem * 4 + 0.4rem * 6;
+    padding: 0.8rem 4rem;
+    background-color: $gcolor9;
+    box-shadow: 0 0 0 0.3rem $gcolor8;
+
+    a {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 4.8rem;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      color: $gcolor0;
+
+      span.text {
+        position: relative;
+        display: block;
+        line-height: 3.2rem;
+        opacity: 0;
+        transition: 0.3s;
+        transform: translateY(-1.6rem);
+      }
+
+      span.icon {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.4rem;
+        transition: 0.3s;
+        width: 4.8rem;
+        z-index: 1;
+        svg.icon {
+          width: 50%;
+          height: 50%;
+        }
+      }
+
+      &.active span.text {
+        opacity: 1;
+        transform: translateY(-0.8rem);
+      }
+      &.active span.icon {
+        transform: translateY(2.8rem);
+      }
+
+      &:nth-child(1).active ~ .indicator {
+        transform: translateX((4.8rem + 0.8rem) * 0);
+      }
+      &:nth-child(2).active ~ .indicator {
+        transform: translateX((4.8rem + 0.8rem) * 1);
+      }
+      &:nth-child(3).active ~ .indicator {
+        transform: translateX((4.8rem + 0.8rem) * 2);
+      }
+      &:nth-child(4).active ~ .indicator {
+        transform: translateX((4.8rem + 0.8rem) * 3);
+      }
+    }
+
+    .indicator {
+      position: absolute;
+      bottom: -2.8rem;
+      width: 4.8rem;
+      height: 4.8rem;
+      background-color: $vcolor9;
+      border-radius: 100%;
+      border: solid 0.6rem #000;
+      transition: border 1s, background-color 1s, transform 0.3s;
+    }
+  }
+
+  &__form {
+    @include header_item;
+    width: 24rem;
+    padding: 0.8rem 1.6rem;
+
+    button {
+      z-index: inherit;
+      width: 44%;
+      background-color: $vcolor9;
+      padding: 0.4rem 0.8rem;
+      border-radius: 2 * 0.4rem + 1.4rem;
+      color: $vcolor0;
+      border: solid 0.1rem $gcolor0;
+      font-family: Bradley Hand, cursive;
+      font-size: 1.6rem;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+
+      &:hover {
+        background-color: $vcolor5;
+        cursor: pointer;
+      }
+      &:active {
+        box-shadow: 0 0 0 0.1rem #fff;
+      }
+    }
+  }
+}
+
+.header-sticky {
+  background-color: $vcolor9;
+  .indicator {
+    border: solid 0.6rem $vcolor9;
+    background-color: $gcolor9;
+  }
+  .header__background {
+    background-color: $vcolor9;
+  }
+  button {
+    background-color: $gcolor9;
+  }
+}
