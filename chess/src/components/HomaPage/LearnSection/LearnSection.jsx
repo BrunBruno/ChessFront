@@ -1,7 +1,7 @@
 import classes from "./LearnSection.module.scss";
 
-function Learnsection() {
+function LearnSection(props) {
   return <section id="learn" className={classes.learn}></section>;
 }
 
-export default Learnsection;
+export default LearnSection;
