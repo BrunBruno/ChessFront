@@ -1,4 +1,6 @@
+@import "../../../App.module.scss";
+
 .learn {
-  width: 100vw;
-  height: 100vh;
+  @include container;
+  display: block;
 }
