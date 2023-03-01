@@ -1,3 +1,11 @@
+.observe {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  transform: translateY(50vh);
+  z-index: -10;
+}
+
 .footer {
   background-color: #000;
 }

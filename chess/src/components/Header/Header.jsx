@@ -4,7 +4,7 @@ import classes from "./Header.module.scss";
 
 import HeaderIcons from "./HeaderIcons";
 
-function Header() {
+function Header(props) {
   const headerRef = useRef(null);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -16,15 +16,6 @@ function Header() {
     });
   }, []);
 
-  const activateIcon = (event) => {
-    const elements = event.currentTarget.parentNode.children;
-    for (let i = 0; i < elements.length; i++) {
-      elements[i].classList.remove(classes.active);
-    }
-
-    event.currentTarget.classList.add(classes.active);
-  };
-
   return (
     <header className={classes.header} ref={headerRef}>
       <div className={classes.header__background}></div>
@@ -33,26 +24,26 @@ function Header() {
       </div>
 
       <nav className={classes.header__navigation}>
-        <a href="#" onClick={activateIcon} className={classes.active}>
-          <span className={classes.text}>Home</span>
+        <a href="#" className={classes.active}>
+          <span className={classes.text}>HOME</span>
           <span className={classes.icon}>
             <HeaderIcons icon="home" />
           </span>
         </a>
-        <a href="#learn" onClick={activateIcon}>
-          <span className={classes.text}>Learn</span>
+        <a href="#learn">
+          <span className={classes.text}>LEARN</span>
           <span className={classes.icon}>
             <HeaderIcons icon="learn" />
           </span>
         </a>
-        <a href="#" onClick={activateIcon}>
-          <span className={classes.text}>idk</span>
+        <a href="#play">
+          <span className={classes.text}>PLAY</span>
           <span className={classes.icon}>
-            <HeaderIcons icon="i" />
+            <HeaderIcons icon="play" />
           </span>
         </a>
-        <a href="#" onClick={activateIcon}>
-          <span className={classes.text}>idk</span>
+        <a href="#faq">
+          <span className={classes.text}>FAQ</span>
           <span className={classes.icon}>
             <HeaderIcons icon="faq" />
           </span>

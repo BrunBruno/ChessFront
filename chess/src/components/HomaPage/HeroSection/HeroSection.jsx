@@ -1,8 +1,8 @@
 import classes from "./HeroSection.module.scss";
 
-function HeroSection() {
+function HeroSection(props) {
   return (
-    <section className={classes.hero}>
+    <section id="hero" className={classes.hero}>
       <div className={classes.hero__content}></div>
     </section>
   );
