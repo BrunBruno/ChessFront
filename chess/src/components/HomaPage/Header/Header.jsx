@@ -18,7 +18,11 @@ function Header(props) {
 
   return (
     <header className={classes.header} ref={headerRef}>
-      <div className={classes.header__background}></div>
+      <div className={classes.header__background}>
+        <div className={classes.space} />
+        <div className={classes.space2} />
+        <div className={classes.space} />
+      </div>
       <div className={classes.header__logo}>
         <img src="images/logo.png" />
       </div>
