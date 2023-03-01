@@ -28,3 +28,24 @@ body {
     }
   }
 }
+
+@mixin def-button($rad) {
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  font-family: Bradley Hand, cursive;
+  background-color: $vcolor9;
+  color: $vcolor0;
+  border: solid 0.1rem $gcolor0;
+  border-radius: $rad;
+  overflow: hidden;
+  outline: none;
+
+  &:hover {
+    background-color: $vcolor5;
+    cursor: pointer;
+  }
+  &:active {
+    box-shadow: 0 0 0 0.1rem #fff;
+  }
+}

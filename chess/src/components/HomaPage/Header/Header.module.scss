@@ -1,4 +1,4 @@
-@import "../../Variables.scss";
+@import "../../../App.module.scss";
 
 .header {
   position: fixed;
@@ -10,42 +10,52 @@
   align-items: center;
   justify-content: space-between;
   padding: 1.6rem 6.4rem;
-  transition: all 1s;
   user-select: none;
+  transition: all 0.5s;
 
   &__background {
-    position: fixed;
     $width: 4rem * 2 + 4.8rem * 4 + 0.4rem * 6 + 8rem;
-    width: $width;
-    height: 2rem;
-    left: calc(50% - ($width / 2));
+    position: fixed;
+    width: 100%;
+    height: 0;
     top: 8rem;
-    border-bottom-right-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    transition: all 1s;
+    left: 0;
+    background-color: red;
+    .space {
+      display: inline-flex;
+      width: calc((100% - $width) / 2);
+    }
+    .space2 {
+      display: inline-flex;
+      width: $width;
+      height: 2rem;
+      border-bottom-right-radius: 2rem;
+      border-bottom-left-radius: 2rem;
+      transition: all 0.5s;
+    }
   }
 
-  @mixin header_item {
+  @mixin header_item($wdh) {
     z-index: inherit;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 0.8rem;
+    width: $wdh;
   }
 
   &__logo {
-    @include header_item;
-    width: 24rem;
+    @include header_item(24rem);
     img {
       object-fit: cover;
       height: 8rem - 1.6rem * 2;
+      cursor: pointer;
     }
   }
 
   &__navigation {
-    @include header_item;
+    @include header_item(4rem * 2 + 4.8rem * 4 + 0.4rem * 6);
     position: relative;
-    width: 4rem * 2 + 4.8rem * 4 + 0.4rem * 6;
     padding: 0.8rem 4rem;
     background-color: $gcolor9;
     box-shadow: 0 0 0 0.3rem $gcolor8;
@@ -116,29 +126,21 @@
       background-color: $vcolor9;
       border-radius: 100%;
       border: solid 0.6rem #000;
-      transition: border 1s, background-color 1s, transform 0.3s;
+      transition: border 0.5s, background-color 0.5s, transform 0.3s;
     }
   }
 
   &__form {
-    @include header_item;
-    width: 24rem;
+    @include header_item(24rem);
     padding: 0.8rem 1.6rem;
 
     button {
+      @include def-button(2 * 0.4rem + 1.4rem);
       z-index: inherit;
       width: 44%;
-      background-color: $vcolor9;
       padding: 0.4rem 0.8rem;
-      border-radius: 2 * 0.4rem + 1.4rem;
-      color: $vcolor0;
-      border: solid 0.1rem $gcolor0;
-      font-family: Bradley Hand, cursive;
       font-size: 1.6rem;
-      font-weight: bold;
-      overflow: hidden;
       text-overflow: ellipsis;
-      text-align: center;
 
       &:hover {
         background-color: $vcolor5;
@@ -158,7 +160,16 @@
     background-color: $gcolor9;
   }
   .header__background {
-    background-color: $vcolor9;
+    .space {
+      border-top: solid 0.5rem $vcolor7;
+      vertical-align: top;
+    }
+    .space2 {
+      background-color: $vcolor9;
+      border: solid 0.5rem $vcolor7;
+      border-top: none;
+      height: 2rem;
+    }
   }
   button {
     background-color: $gcolor9;

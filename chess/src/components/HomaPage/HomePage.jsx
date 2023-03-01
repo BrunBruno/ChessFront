@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 
 import classes from "./HomePage.module.scss";
-import clsHeader from "../Header/Header.module.scss";
+import clsHeader from "./Header/Header.module.scss";
 
-import Header from "../Header/Header";
+import Header from "./Header/Header";
 import HeroSection from "./HeroSection/HeroSection";
 import LearnSection from "./LearnSection/LearnSection";
 import PlaySection from "./PlaySection/PlaySection";
