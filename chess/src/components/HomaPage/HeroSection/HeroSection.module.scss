@@ -1,0 +1,17 @@
+@import "../../../Variables.scss";
+
+.hero {
+  width: 100%;
+  height: 100vh;
+
+  &__content {
+    width: 100%;
+    height: 90%;
+    background-color: #000;
+    border-bottom-left-radius: 20rem;
+    background-image: url("images/hero-background3.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    box-shadow: -1rem 1rem 0 $vcolor9;
+  }
+}
