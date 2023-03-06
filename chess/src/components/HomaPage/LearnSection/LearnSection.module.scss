@@ -5,21 +5,19 @@
   width: 100vw;
 
   .learn-bar {
-    background-color: #000;
     transform: translateX(-15rem);
     width: calc(100% + 15rem);
     height: 6rem;
     overflow: hidden;
     .moving-block {
-      // transform: translateX(-15rem);
       display: inline-flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
       width: 15rem;
       height: 100%;
-      // background-color: black;
-      // opacity: 0.1;
+      opacity: 0.3;
+      user-select: none;
     }
     .moving-color0 {
       color: $vcolor0;
@@ -80,7 +78,7 @@
       gap: 2rem;
       cursor: pointer;
 
-      transition: all 1s;
+      transition: all 0.5s;
 
       &:hover {
         background-color: rgba($vcolor0, 0.1);
@@ -259,7 +257,8 @@
     box-shadow: 0 0 0 0.1rem $vcolor3;
     border-radius: 2rem;
     overflow: hidden;
-    animation: expand 1s;
+    padding: 3rem;
+    animation: expand 0.5s;
 
     h2 {
       font-size: 2.6rem;
@@ -267,7 +266,7 @@
     }
     span {
       font-size: 1.2rem;
-      text-align: justify;
+      text-align: center;
     }
   }
 
@@ -277,7 +276,7 @@
     align-items: center;
     justify-content: center;
     gap: 10%;
-    padding: 2rem;
+    cursor: pointer;
   }
 
   @keyframes expand {
