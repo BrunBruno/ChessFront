@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 import classes from "./LearnSection.module.scss";
 
@@ -15,8 +16,36 @@ function LearnSection(props) {
       childs[i].classList.remove(classes.hidden);
     }
   };
+
+  function MakeMotion() {
+    let divs = [];
+    for (let i = 0; i < 10; i++) {
+      divs.push(
+        <motion.div
+          key={"md" + i}
+          className={`${classes["moving-block"]} ${
+            classes["moving-color" + Math.floor(Math.random() * 10)]
+          }`}
+          initial={{ x: -i * 150 }}
+          animate={{ x: window.innerWidth - i * 150 + 150 }}
+          transition={{
+            repeat: Infinity,
+            duration: 10,
+            ease: "linear",
+            delay: i,
+          }}
+        >
+          CHESS
+        </motion.div>
+      );
+    }
+
+    return divs;
+  }
+
   return (
     <section id="learn" className={classes.learnSec}>
+      <div className={classes["learn-bar"]}>{MakeMotion()}</div>
       <LearnExpand expandRef={expandRef} expanClose={expanClose} />
       <div className={classes.learn} ref={blockRef}>
         <LearnBlock
