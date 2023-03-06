@@ -1,90 +1,52 @@
-import LearnIcons from "./LearnIcons";
+import { useRef } from "react";
+
 import classes from "./LearnSection.module.scss";
 
+import LearnBlock from "./LearnBlock";
+import LearnExpand from "./LearnExpand";
+
 function LearnSection(props) {
-  const onChangeImage = (event) => {
-    // const elements = event.currentTarget.parentNode.children;
-    // for (let i = 0; i < elements.length; i++) {
-    //   elements[i].classList.remove(classes.active);
-    // }
-
-    event.currentTarget.classList.add(classes.active);
+  const expandRef = useRef(null);
+  const blockRef = useRef(null);
+  const expanClose = () => {
+    expandRef.current.classList.remove(classes["expand-active"]);
+    const childs = blockRef.current.children;
+    for (let i = 0; i < childs.length; i++) {
+      childs[i].classList.remove(classes.hidden);
+    }
   };
-  const delIcon = (event) => {
-    event.currentTarget.classList.remove(classes.active);
-    // const elements = event.currentTarget.parentNode.children;
-    // for (let i = 0; i < elements.length; i++) {
-    //   elements[i].classList.remove(classes.active);
-    // }
-  };
-
   return (
-    <section id="learn" className={classes.learn}>
-      <div
-        className={classes.learn__block}
-        onMouseEnter={onChangeImage}
-        onMouseLeave={delIcon}
-      >
-        <LearnIcons icon="pawn" />
-        <div>
-          <h2>Some Title</h2>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            ut voluptate sunt nulla. Velit, consectetur maiores! Sit beatae,
-            modi iure possimus perspiciatis fugit doloribus qui rem accusamus
-            sequi cupiditate nam?
-          </span>
-        </div>
-      </div>
-      <div
-        className={classes.learn__block}
-        onMouseEnter={onChangeImage}
-        onMouseLeave={delIcon}
-      >
-        <LearnIcons icon="table" />
-        <div>
-          <h2>Some Title</h2>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            ut voluptate sunt nulla. Velit, consectetur maiores! Sit beatae,
-            modi iure possimus perspiciatis fugit doloribus qui rem accusamus
-            sequi cupiditate nam?
-          </span>
-        </div>
-      </div>
-      <div></div>
-      <div></div>
-      <div
-        className={classes.learn__block}
-        onMouseEnter={onChangeImage}
-        onMouseLeave={delIcon}
-      >
-        <LearnIcons icon="rank" />
-        <div>
-          <h2>Some Title</h2>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            ut voluptate sunt nulla. Velit, consectetur maiores! Sit beatae,
-            modi iure possimus perspiciatis fugit doloribus qui rem accusamus
-            sequi cupiditate nam?
-          </span>
-        </div>
-      </div>
-      <div
-        className={classes.learn__block}
-        onMouseEnter={onChangeImage}
-        onMouseLeave={delIcon}
-      >
-        <LearnIcons icon="chart" />
-        <div>
-          <h2>Some Title</h2>
-          <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
-            ut voluptate sunt nulla. Velit, consectetur maiores! Sit beatae,
-            modi iure possimus perspiciatis fugit doloribus qui rem accusamus
-            sequi cupiditate nam?
-          </span>
-        </div>
+    <section id="learn" className={classes.learnSec}>
+      <LearnExpand expandRef={expandRef} expanClose={expanClose} />
+      <div className={classes.learn} ref={blockRef}>
+        <LearnBlock
+          expandRef={expandRef}
+          icon="table"
+          title="Play"
+          text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity. At its core, chess is a game of strategy, where players must use their wits and experience to outmaneuver their opponents and claim victory on the board."
+        />
+        <LearnBlock
+          expandRef={expandRef}
+          icon="pawn"
+          title="Learn"
+          text="Learning to play chess is a rewarding experience that can benefit you in many ways. Not only is chess a fun and engaging game to play, but it also helps develop important skills such as critical thinking, problem-solving, and decision-making."
+        />
+
+        <div />
+        <div />
+
+        <LearnBlock
+          expandRef={expandRef}
+          icon="rank"
+          title="Compete"
+          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels. Whether you're a casual player looking to test your skills against others, or a seasoned competitor aiming for the top of the rankings, there are many opportunities to compete in chess."
+        />
+        <LearnBlock
+          expandRef={expandRef}
+          icon="chart"
+          title="Improve"
+          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding. Whether you're a beginner or an experienced player, there are many ways to improve your game and take your skills to the next level."
+        />
       </div>
     </section>
   );

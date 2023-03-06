@@ -5,12 +5,13 @@ function HeroSection(props) {
     <section id="hero" className={classes.hero}>
       <div className={classes.hero__content}>
         <div className={classes.hero__content__intro}>
-          <h1>PLAY CHESS!!!</h1>
+          <h1>BETTER CHESS</h1>
           <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique
-            eius soluta laborum quasi qui quia sapiente quas deleniti nisi.
-            Dolorum esse eum reprehenderit nam quam blanditiis, deleniti aperiam
-            incidunt. Ab!
+            Welcome to the fascinating world of chess! Chess is one of the most
+            popular and enduring games in the world, with millions of people
+            playing and enjoying it every day. It is a game of strategy, logic,
+            and skill, where players must use their wits and experience to
+            outmaneuver their opponents and claim victory on the board.
           </span>
           <div>
             <button>START NOW</button>
@@ -25,5 +26,3 @@ function HeroSection(props) {
 }
 
 export default HeroSection;
-
-//aaaaaaaaaaaaaaaaa

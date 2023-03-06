@@ -1,185 +1,243 @@
 @import "../../../App.module.scss";
 
-.learn {
+.learnSec {
+  position: relative;
   width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2rem;
-  padding: 0 15rem;
-
-  .active > .icon {
-    .pawn-top {
-      transform: translateY(-10%);
-    }
-    .pawn-mid-top {
-      transform: translateY(-5%);
-    }
-    .pawn-mid-bot {
-      transform: translateY(5%);
-    }
-    .pawn-bot {
-      transform: translateY(10%);
-    }
-    .table-wp-1 {
-      transform: translateY(-10%);
-    }
-    .table-wp-2 {
-      transform: translateY(-10%);
-    }
-    .table-bp-1 {
-      transform: translateY(-10%);
-    }
-    .table-bp-2 {
-      transform: translateY(-10%);
-    }
-    .rank-1 {
-      opacity: 1;
-    }
-    .rank-2 {
-      opacity: 1;
-    }
-    .rank-3 {
-      opacity: 1;
-    }
-    .chart-circle {
-      animation: chart 0.3s forwards;
-      animation-timing-function: linear;
-    }
-  }
-
-  &__block {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: nowrap;
-    position: relative;
+  .learn {
     width: 100%;
-    // border: solid 1px $gcolor0;
-    overflow: hidden;
-    border-radius: 2rem;
-    padding: 2rem;
+    // height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-    cursor: pointer;
-    &:hover {
-      background-color: rgba($vcolor0, 0.1);
+    padding: 10% 15rem 5% 15rem;
+
+    // hidden iteam
+    .hidden {
+      opacity: 0;
     }
 
-    &:nth-child(1) {
-      grid-column: span 2;
-      align-self: end;
-    }
-    &:nth-child(2) {
-      grid-column: span 2;
-      align-self: end;
-    }
-    &:nth-child(5) {
-      grid-column: span 2;
-      align-self: start;
-    }
-    &:nth-child(6) {
-      grid-column: span 2;
-      align-self: start;
-    }
+    // deffult item
+    &__block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 2rem;
+      padding: 2rem;
+      gap: 2rem;
+      cursor: pointer;
 
-    div {
-      padding-left: 1rem;
-      border-left: solid 0.1rem $vcolor9;
+      transition: all 1s;
 
-      h2 {
-        font-size: 2.6rem;
+      &:hover {
+        background-color: rgba($vcolor0, 0.1);
+        box-shadow: 0 0 0 0.1rem $vcolor3;
       }
-      span {
-        font-size: 1.2rem;
-        text-align: justify;
+
+      // set grid leayout
+      &:nth-child(1) {
+        grid-column: span 2;
       }
-    }
+      &:nth-child(2) {
+        grid-column: span 2;
+      }
+      &:nth-child(5) {
+        grid-column: span 2;
+      }
+      &:nth-child(6) {
+        grid-column: span 2;
+      }
 
-    .icon {
-      flex-shrink: 0;
-      margin: 1rem;
-      padding: 1rem;
-      background-color: rgba($vcolor0, 0.7);
-      border-radius: 100%;
-      width: 8rem;
-      height: 8rem;
+      div {
+        padding-left: 1rem;
+        border-left: solid 0.1rem $vcolor9;
 
-      svg {
-        width: 100%;
-        height: 100%;
-        .pawn-top {
-          transition: all 0.3s;
+        h2 {
+          font-size: 2.6rem;
         }
-        .pawn-mid-top {
-          transition: all 0.3s;
-        }
-        .pawn-mid-bot {
-          transition: all 0.3s;
-        }
-        .pawn-bot {
-          transition: all 0.3s;
-        }
-        .table-wp-1 {
-          transition: all 0.3s;
-        }
-        .table-wp-2 {
-          transition: all 0.3s;
-          transition-delay: 0.1s;
-        }
-        .table-bp-1 {
-          transition: all 0.3s;
-          transition-delay: 0.2s;
-        }
-        .table-bp-2 {
-          transition: all 0.3s;
-          transition-delay: 0.3s;
-        }
-        .rank-1 {
-          opacity: 0;
-          transition: all 0.3s;
-        }
-        .rank-2 {
-          opacity: 0;
-          transition: all 0.3s;
-          transition-delay: 0.15s;
-        }
-        .rank-3 {
-          opacity: 0;
-          transition: all 0.3s;
-          transition-delay: 0.3s;
-        }
-        .chart-circle {
-          animation: chart-back 0.3s forwards;
-          animation-timing-function: linear;
+        span {
+          font-size: 1.2rem;
+          text-align: justify;
         }
       }
+
+      .icon {
+        flex-shrink: 0;
+        margin: 1rem;
+        padding: 1rem;
+        background-color: rgba($vcolor0, 0.7);
+        border-radius: 100%;
+        width: 8rem;
+        height: 8rem;
+
+        // icon deffult
+        svg {
+          width: 100%;
+          height: 100%;
+          .pawn-top {
+            transition: all 0.3s;
+          }
+          .pawn-mid-top {
+            transition: all 0.3s;
+          }
+          .pawn-mid-bot {
+            transition: all 0.3s;
+          }
+          .pawn-bot {
+            transition: all 0.3s;
+          }
+          .table-wp-1 {
+            transition: all 0.3s;
+          }
+          .table-wp-2 {
+            transition: all 0.3s;
+            transition-delay: 0.1s;
+          }
+          .table-bp-1 {
+            transition: all 0.3s;
+            transition-delay: 0.2s;
+          }
+          .table-bp-2 {
+            transition: all 0.3s;
+            transition-delay: 0.3s;
+          }
+          .rank-1 {
+            opacity: 0;
+            transition: all 0.3s;
+          }
+          .rank-2 {
+            opacity: 0;
+            transition: all 0.3s;
+            transition-delay: 0.15s;
+          }
+          .rank-3 {
+            opacity: 0;
+            transition: all 0.3s;
+            transition-delay: 0.3s;
+          }
+          .chart-circle {
+            animation: chart-back 0.3s forwards;
+            animation-timing-function: linear;
+          }
+        }
+      }
+    }
+
+    // icon animations
+    .active > .icon {
+      .pawn-top {
+        transform: translateY(-10%);
+      }
+      .pawn-mid-top {
+        transform: translateY(-5%);
+      }
+      .pawn-mid-bot {
+        transform: translateY(5%);
+      }
+      .pawn-bot {
+        transform: translateY(10%);
+      }
+      .table-wp-1 {
+        transform: translateY(-10%);
+      }
+      .table-wp-2 {
+        transform: translateY(-10%);
+      }
+      .table-bp-1 {
+        transform: translateY(-10%);
+      }
+      .table-bp-2 {
+        transform: translateY(-10%);
+      }
+      .rank-1 {
+        opacity: 1;
+      }
+      .rank-2 {
+        opacity: 1;
+      }
+      .rank-3 {
+        opacity: 1;
+      }
+      .chart-circle {
+        animation: chart 0.3s forwards;
+        animation-timing-function: linear;
+      }
+
+      @keyframes chart {
+        0% {
+          transform: translate(0%, 0%);
+        }
+        25% {
+          transform: translate(10%, -20%);
+        }
+        50% {
+          transform: translate(20%, -40%);
+        }
+        75% {
+          transform: translate(30%, -20%);
+        }
+        100% {
+          transform: translate(40%, -60%);
+        }
+      }
+
+      @keyframes chart-back {
+        100% {
+          transform: translate(0%, 0%);
+        }
+        0% {
+          transform: translate(40%, -60%);
+        }
+      }
     }
   }
-}
 
-@keyframes chart {
-  0% {
-    transform: translate(0%, 0%);
-  }
-  25% {
-    transform: translate(10%, -20%);
-  }
-  50% {
-    transform: translate(20%, -40%);
-  }
-  75% {
-    transform: translate(30%, -20%);
-  }
-  100% {
-    transform: translate(40%, -60%);
-  }
-}
+  // Expanded option in learn section
+  .expand {
+    display: none;
+    position: absolute;
+    top: 50% + 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 50%;
+    z-index: 2;
+    background-color: rgba($vcolor0, 0.1);
+    box-shadow: 0 0 0 0.1rem $vcolor3;
+    border-radius: 2rem;
+    overflow: hidden;
+    animation: expand 1s;
 
-@keyframes chart-back {
-  100% {
-    transform: translate(0%, 0%);
+    h2 {
+      font-size: 2.6rem;
+      border-bottom: solid 0.3rem $vcolor9;
+    }
+    span {
+      font-size: 1.2rem;
+      text-align: justify;
+    }
   }
-  0% {
-    transform: translate(40%, -60%);
+
+  .expand-active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    padding: 2rem;
+  }
+
+  @keyframes expand {
+    from {
+      width: 0%;
+      height: 0%;
+    }
+    to {
+      width: 50%;
+      height: 50%;
+    }
   }
 }
