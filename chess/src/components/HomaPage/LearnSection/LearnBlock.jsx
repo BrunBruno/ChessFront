@@ -15,7 +15,9 @@ function LearnBlock(props) {
     for (let i = 0; i < elements.length; i++) {
       elements[i].classList.add(classes.hidden);
     }
+
     props.expandRef.current.classList.add(classes["expand-active"]);
+    props.onExpandContent(props.title);
   };
 
   return (
@@ -24,6 +26,7 @@ function LearnBlock(props) {
       onMouseEnter={startIcon}
       onMouseLeave={endIcon}
       onClick={expandContent}
+      name="dupa"
     >
       <LearnIcons icon={props.icon} />
       <div>

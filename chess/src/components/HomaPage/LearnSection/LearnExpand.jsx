@@ -7,22 +7,10 @@ function LearnExpand(props) {
       className={classes.expand}
       onClick={props.expanClose}
     >
-      <h2>TITLE HERE</h2>
-      <span>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat ab
-        laborum totam maiores corporis facere illum vitae? Assumenda optio hic
-        nulla quia. Beatae molestiae et odit. Nemo cum aut soluta!
-      </span>
-      <span>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat ab
-        laborum totam maiores corporis facere illum vitae? Assumenda optio hic
-        nulla quia. Beatae molestiae et odit. Nemo cum aut soluta!
-      </span>
-      <span>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat ab
-        laborum totam maiores corporis facere illum vitae? Assumenda optio hic
-        nulla quia. Beatae molestiae et odit. Nemo cum aut soluta!
-      </span>
+      <h2>{props.expandContent.title}</h2>
+      <span>{props.expandContent.text1}</span>
+      <span>{props.expandContent.text2}</span>
+      <span>{props.expandContent.text3}</span>
     </div>
   );
 }
