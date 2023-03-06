@@ -166,7 +166,7 @@ function LearnIcons(props) {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M10 81H90" stroke="black" />
+          <path d="M10 81H90" stroke="#5f3dc4" />
           <circle
             cx="20"
             cy="81"
@@ -179,7 +179,7 @@ function LearnIcons(props) {
             y1="89.9859"
             x2="81.581"
             y2="9.99324"
-            stroke="black"
+            stroke="#5f3dc4"
           />
         </svg>
       </div>
