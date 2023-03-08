@@ -1,5 +1,93 @@
+$i: 0;
+
 .play {
   width: 100vw;
   height: 100vh;
-  background-color: #000;
+  display: flex;
+  justify-content: space-evenly;
+
+  .active0 {
+    transform: rotateY(0deg);
+  }
+  .active1 {
+    transform: rotateY(-90deg);
+  }
+  .active2 {
+    transform: rotateY(-180deg);
+  }
+  .active3 {
+    transform: rotateY(-270deg);
+  }
+
+  &__cube {
+    position: relative;
+    $wdh: 25vw;
+    width: $wdh;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s linear;
+
+    @mixin left_shift($left) {
+      span {
+        &:nth-child(1) {
+          background-position: $left 0%;
+        }
+        &:nth-child(2) {
+          background-position: $left 0%;
+        }
+        &:nth-child(3) {
+          background-position: $left 0%;
+        }
+        &:nth-child(4) {
+          background-position: $left 0%;
+        }
+      }
+    }
+
+    &:nth-child(1) {
+      @include left_shift(0);
+    }
+    &:nth-child(2) {
+      @include left_shift(-100%);
+    }
+    &:nth-child(3) {
+      @include left_shift(-200%);
+    }
+    &:nth-child(4) {
+      @include left_shift(-300%);
+    }
+
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+
+      span {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+
+        &:nth-child(1) {
+          transform: rotateY(calc(90deg * 0)) translateZ($wdh / 2);
+          background-image: url("images/learn-bg0.jpg");
+        }
+        &:nth-child(2) {
+          transform: rotateY(calc(90deg * 1)) translateZ($wdh / 2);
+          background-image: url("images/learn-bg1.jpg");
+        }
+        &:nth-child(3) {
+          transform: rotateY(calc(90deg * 2)) translateZ($wdh / 2);
+          background-image: url("images/learn-bg2.jpg");
+        }
+        &:nth-child(4) {
+          transform: rotateY(calc(90deg * 3)) translateZ($wdh / 2);
+          background-image: url("images/learn-bg3.jpg");
+        }
+      }
+    }
+  }
 }
