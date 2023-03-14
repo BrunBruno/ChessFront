@@ -53,39 +53,59 @@
 
   .learn {
     width: 100%;
-    // height: 80vh;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
     padding: 6rem 15rem 6rem 15rem;
 
-    // hidden iteam
     .hidden {
-      opacity: 0;
+      opacity: 0.1;
+      cursor: default;
     }
 
-    // deffult item
     &__block {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: nowrap;
       position: relative;
       width: 100%;
-      overflow: hidden;
       border-radius: 2rem;
       padding: 2rem;
       gap: 2rem;
       cursor: pointer;
-
       transition: all 0.5s;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 110%;
+        left: 0;
+        width: 100%;
+        height: 30%;
+        border-top-left-radius: 2rem;
+        border-top-right-radius: 2rem;
+        transition: all 0.5s;
+      }
 
       &:hover {
         background-color: rgba($vcolor0, 0.1);
         box-shadow: 0 0 0 0.1rem $vcolor3;
       }
 
-      // set grid leayout
+      &:hover::after {
+        background-image: linear-gradient(
+          rgba($vcolor0, 0.1),
+          rgba($vcolor0, 0.08),
+          rgba($vcolor0, 0.06),
+          rgba($vcolor0, 0.04),
+          rgba($vcolor0, 0.02)
+        );
+        box-shadow: 0 -0.1rem 0 0.05rem $vcolor3;
+        filter: blur(5px);
+      }
+
       &:nth-child(1) {
         grid-column: span 2;
       }
@@ -121,7 +141,6 @@
         width: 8rem;
         height: 8rem;
 
-        // icon deffult
         svg {
           width: 100%;
           height: 100%;
@@ -174,7 +193,6 @@
       }
     }
 
-    // icon animations
     .active > .icon {
       .pawn-top {
         transform: translateY(-10%);
@@ -243,7 +261,6 @@
     }
   }
 
-  // Expanded option in learn section
   .expand {
     display: none;
     position: absolute;

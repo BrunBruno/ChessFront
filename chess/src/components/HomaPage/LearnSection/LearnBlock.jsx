@@ -26,7 +26,6 @@ function LearnBlock(props) {
       onMouseEnter={startIcon}
       onMouseLeave={endIcon}
       onClick={expandContent}
-      name="dupa"
     >
       <LearnIcons icon={props.icon} />
       <div>

@@ -180,3 +180,19 @@
     background-color: $gcolor9;
   }
 }
+
+.trans-header {
+  background-color: #0000;
+  .indicator {
+    border: solid 0.3rem $gcolor8;
+  }
+  .header__background {
+    .space {
+      border: none;
+    }
+    .space2 {
+      background-color: #0000;
+      border: none;
+    }
+  }
+}

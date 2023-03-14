@@ -8,6 +8,17 @@ function Header(props) {
   const headerRef = useRef(null);
   useEffect(() => {
     window.addEventListener("scroll", () => {
+      const distance =
+        window.pageYOffset - props.platSectionRef.current.offsetTop * 0.9;
+      if (
+        distance > 0 &&
+        distance < props.platSectionRef.current.offsetHeight
+      ) {
+        headerRef.current.classList.add(classes["trans-header"]);
+      } else {
+        headerRef.current.classList.remove(classes["trans-header"]);
+      }
+
       if (window.pageYOffset === 0) {
         headerRef.current.classList.remove(classes["header-sticky"]);
       } else {

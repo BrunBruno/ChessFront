@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import classes from "./PlaySection.module.scss";
 
-function PlaySection() {
+function PlaySection(props) {
   const [prevCls, setPrevCls] = useState(classes.active0);
-  const divs = ["Div 1", "Div 2", "Div 3", "Div 4"];
+  const divs = ["WoooW", "Jooo", "Aaaa", "Yeeee"];
+  const backgroundRef = useRef(null);
+
   const onRotate = (event, index) => {
     let cls;
     switch (index) {
@@ -21,7 +23,7 @@ function PlaySection() {
         break;
     }
 
-    const elements = event.currentTarget.parentNode.children;
+    const elements = backgroundRef.current.children;
     for (let i = 0; i < elements.length; i++) {
       elements[i].classList.remove(prevCls);
     }
@@ -30,22 +32,32 @@ function PlaySection() {
     }
     setPrevCls(cls);
   };
+
   return (
-    <section id="play" className={classes.play}>
-      {divs.map((div, index) => (
-        <div
-          key={index}
-          className={classes.play__cube}
-          onMouseEnter={(event) => onRotate(event, index)}
-        >
-          <div>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+    <section id="play" ref={props.platSectionRef} className={classes.play}>
+      <div className={classes.play__content}>
+        {divs.map((div, index) => (
+          <div
+            key={index}
+            className={classes.play__content__cube}
+            onMouseEnter={(event) => onRotate(event, index)}
+          >
+            <span>{div}</span>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
+      <div ref={backgroundRef} className={classes.play__background}>
+        {divs.map((div, index) => (
+          <div key={index} className={classes.play__background__cube}>
+            <div>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

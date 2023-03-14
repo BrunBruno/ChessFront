@@ -15,6 +15,8 @@ function HomePage() {
   const playRef = useRef(null);
   const faqRef = useRef(null);
 
+  const platSectionRef = useRef(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -47,13 +49,13 @@ function HomePage() {
 
   return (
     <main>
-      <Header />
+      <Header platSectionRef={platSectionRef} />
       <div id="obs-hero" ref={heroRef} className={classes.observe} />
       <HeroSection />
       <div id="obs-learn" ref={learnRef} className={classes.observe} />
       <LearnSection />
       <div id="obs-play" ref={playRef} className={classes.observe} />
-      <PlaySection />
+      <PlaySection platSectionRef={platSectionRef} />
       <div id="obs-faq" ref={faqRef} className={classes.observe} />
       <FAQSection />
       <footer className={classes.footer}>Footer</footer>
