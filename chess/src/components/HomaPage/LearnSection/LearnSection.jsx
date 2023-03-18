@@ -1,12 +1,11 @@
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
 
 import classes from "./LearnSection.module.scss";
 
 import LearnBlock from "./LearnBlock";
 import LearnExpand from "./LearnExpand";
 
-function LearnSection(props) {
+function LearnSection() {
   const exp = {
     Play: [
       "Play Chess",
@@ -36,11 +35,12 @@ function LearnSection(props) {
   const expandRef = useRef(null);
   const blockRef = useRef(null);
   const [expandContent, setExpandContent] = useState({
-    title: "title",
-    text1: "text1",
-    text2: "text2",
-    text3: "text3",
+    title: "",
+    text1: "",
+    text2: "",
+    text3: "",
   });
+
   const onExpandContent = (event) => {
     setExpandContent({
       title: exp[event][0],
@@ -50,7 +50,7 @@ function LearnSection(props) {
     });
   };
 
-  const expanClose = () => {
+  const onExpanClose = () => {
     expandRef.current.classList.remove(classes["expand-active"]);
     const childs = blockRef.current.children;
     for (let i = 0; i < childs.length; i++) {
@@ -58,73 +58,91 @@ function LearnSection(props) {
     }
   };
 
-  function MakeMotion() {
-    let divs = [];
-    for (let i = 0; i < 10; i++) {
-      divs.push(
-        <motion.div
-          key={"md" + i}
-          className={`${classes["moving-block"]} ${
-            classes["moving-color" + Math.floor(Math.random() * 10)]
-          }`}
-          initial={{ x: -i * 150 }}
-          animate={{ x: window.innerWidth - i * 150 + 150 }}
-          transition={{
-            repeat: Infinity,
-            duration: 10,
-            ease: "linear",
-            delay: i,
-          }}
-        >
-          CHESS
-        </motion.div>
-      );
+  const blocks = [];
+  for (let i = 0; i < 6; i++) {
+    if (i % 2 == 1) {
+      blocks.push(Math.floor(Math.random() * (5 - blocks[i - 1])));
+    } else {
+      blocks.push(Math.floor(Math.random() * 5));
     }
-
-    return divs;
   }
+
+  const makeBlocks = (count) => {
+    let divs = [];
+    for (let i = 0; i < count; i++) {
+      divs.push(<div />);
+    }
+    return divs;
+  };
 
   return (
     <section id="learn" className={classes.learnSec}>
-      <div className={classes["learn-bar"]}>{MakeMotion()}</div>
       <LearnExpand
         expandRef={expandRef}
         expandContent={expandContent}
-        expanClose={expanClose}
+        onExpanClose={onExpanClose}
       />
+
       <div className={classes.learn} ref={blockRef}>
-        <LearnBlock
+        {blocks.map((count, index) => (
+          <>
+            {makeBlocks(count)}
+            <LearnBlock
+              key={index}
+              expandRef={expandRef}
+              onExpandContent={onExpandContent}
+              icon="table"
+              title="Play"
+              text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity."
+            />
+          </>
+        ))}
+
+        {/* <LearnBlock
           expandRef={expandRef}
           onExpandContent={onExpandContent}
           icon="table"
           title="Play"
-          text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity. At its core, chess is a game of strategy, where players must use their wits and experience to outmaneuver their opponents and claim victory on the board."
+          text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity."
         />
         <LearnBlock
           expandRef={expandRef}
           onExpandContent={onExpandContent}
           icon="pawn"
           title="Learn"
-          text="Learning to play chess is a rewarding experience that can benefit you in many ways. Not only is chess a fun and engaging game to play, but it also helps develop important skills such as critical thinking, problem-solving, and decision-making."
+          text="Learning to play chess is a rewarding experience that can benefit you in many ways."
         />
-
-        <div />
-        <div />
 
         <LearnBlock
           expandRef={expandRef}
           onExpandContent={onExpandContent}
           icon="rank"
           title="Compete"
-          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels. Whether you're a casual player looking to test your skills against others, or a seasoned competitor aiming for the top of the rankings, there are many opportunities to compete in chess."
+          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels."
         />
         <LearnBlock
           expandRef={expandRef}
           onExpandContent={onExpandContent}
           icon="chart"
           title="Improve"
-          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding. Whether you're a beginner or an experienced player, there are many ways to improve your game and take your skills to the next level."
+          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding."
         />
+
+        <LearnBlock
+          expandRef={expandRef}
+          onExpandContent={onExpandContent}
+          icon="rank"
+          title="Compete"
+          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels."
+        />
+
+        <LearnBlock
+          expandRef={expandRef}
+          onExpandContent={onExpandContent}
+          icon="chart"
+          title="Improve"
+          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding."
+        /> */}
       </div>
     </section>
   );

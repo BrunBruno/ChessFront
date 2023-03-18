@@ -4,59 +4,13 @@
   position: relative;
   width: 100vw;
 
-  .learn-bar {
-    transform: translateX(-15rem);
-    width: calc(100% + 15rem);
-    height: 6rem;
-    overflow: hidden;
-    .moving-block {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-      width: 15rem;
-      height: 100%;
-      opacity: 0.3;
-      user-select: none;
-    }
-    .moving-color0 {
-      color: $vcolor0;
-    }
-    .moving-color1 {
-      color: $vcolor1;
-    }
-    .moving-color2 {
-      color: $vcolor2;
-    }
-    .moving-color3 {
-      color: $vcolor3;
-    }
-    .moving-color4 {
-      color: $vcolor4;
-    }
-    .moving-color5 {
-      color: $vcolor5;
-    }
-    .moving-color6 {
-      color: $vcolor6;
-    }
-    .moving-color7 {
-      color: $vcolor7;
-    }
-    .moving-color8 {
-      color: $vcolor8;
-    }
-    .moving-color9 {
-      color: $vcolor9;
-    }
-  }
-
   .learn {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 2rem;
-    padding: 6rem 15rem 6rem 15rem;
+    grid-template-columns: repeat(20, 1fr);
+    column-gap: 6rem;
+    row-gap: 2rem;
+    padding: 16rem;
 
     .hidden {
       opacity: 0.1;
@@ -70,15 +24,16 @@
       justify-content: space-between;
       flex-wrap: nowrap;
       position: relative;
-      width: 100%;
       border-radius: 2rem;
-      padding: 2rem;
       gap: 2rem;
       cursor: pointer;
       transition: all 0.5s;
+      // aspect-ratio: 3 / 1;
+      grid-column: 8 span;
 
       &::after {
         content: "";
+        display: none;
         position: absolute;
         top: 110%;
         left: 0;
@@ -95,6 +50,7 @@
       }
 
       &:hover::after {
+        display: block;
         background-image: linear-gradient(
           rgba($vcolor0, 0.1),
           rgba($vcolor0, 0.08),
@@ -104,19 +60,6 @@
         );
         box-shadow: 0 -0.1rem 0 0.05rem $vcolor3;
         filter: blur(5px);
-      }
-
-      &:nth-child(1) {
-        grid-column: span 2;
-      }
-      &:nth-child(2) {
-        grid-column: span 2;
-      }
-      &:nth-child(5) {
-        grid-column: span 2;
-      }
-      &:nth-child(6) {
-        grid-column: span 2;
       }
 
       div {

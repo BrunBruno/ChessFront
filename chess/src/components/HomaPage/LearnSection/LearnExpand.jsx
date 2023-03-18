@@ -5,7 +5,7 @@ function LearnExpand(props) {
     <div
       ref={props.expandRef}
       className={classes.expand}
-      onClick={props.expanClose}
+      onClick={props.onExpanClose}
     >
       <h2>{props.expandContent.title}</h2>
       <span>{props.expandContent.text1}</span>

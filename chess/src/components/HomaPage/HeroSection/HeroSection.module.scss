@@ -7,26 +7,29 @@
   &__content {
     width: 100%;
     height: 90%;
-    background-color: #000;
+
     border-bottom-left-radius: 20rem;
-    background-image: url("images/hero-background3.jpg");
+    background: linear-gradient(#0000 0%, #000 100%),
+      url("images/hero-background3.jpg");
+    background-color: #000;
+
     background-size: contain;
     background-repeat: no-repeat;
     box-shadow: -1rem 1rem 0 $vcolor9;
 
     &__intro {
-      color: $gcolor0;
-      display: block;
+      background-color: rgba($gcolor9, 0.3);
       position: absolute;
-      top: 25%;
-      left: 50%;
-      width: 40%;
-      max-width: 140rem;
-      padding: 0 6.4rem;
-      // text-align: justify;
+      padding: 2rem;
+      left: 30%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 38%;
+      border-radius: 2rem;
+      text-shadow: 0.1rem 0.1rem #000;
 
       h1 {
-        font-size: 5.2rem;
+        font-size: 3.2rem;
         padding: 0.8rem 1.6rem;
         text-align: center;
         margin-bottom: 2rem;
@@ -48,26 +51,26 @@
 
       span {
         display: block;
-        font-size: 2rem;
-        margin-bottom: 2rem;
+        font-size: 1.6rem;
       }
+    }
 
-      div {
-        display: flex;
-        gap: 2.4rem;
-        width: 100%;
-        justify-content: center;
-        button {
-          @include def-button(0.8rem * 2 + 1.6rem);
-          padding: 0.8rem 1.6rem;
-          font-size: 1.6rem;
-          font-weight: 400;
-        }
-        a {
-          text-decoration: none;
-          border-radius: 0.8rem * 2 + 1.6rem;
-        }
-      }
+    &__extra {
+      background-color: $vcolor7;
+      color: $gcolor0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      position: absolute;
+      top: 30%;
+      right: 0;
+      width: 40%;
+      height: 80vh;
+      padding: 6.4rem;
+      border-bottom-left-radius: 6rem;
+      border-top-left-radius: 6rem;
+      border: solid 1rem $vcolor9;
+      border-right: none;
     }
   }
 }

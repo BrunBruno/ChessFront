@@ -13,13 +13,8 @@ function HeroSection(props) {
             and skill, where players must use their wits and experience to
             outmaneuver their opponents and claim victory on the board.
           </span>
-          <div>
-            <button>START NOW</button>
-            <a href="#learn">
-              <button>LEARN MORE</button>
-            </a>
-          </div>
         </div>
+        <div className={classes.hero__content__extra}></div>
       </div>
     </section>
   );
