@@ -1,252 +1,187 @@
 @import "../../../App.module.scss";
 
 .learnSec {
-  position: relative;
   width: 100vw;
 
   .learn {
+    position: relative;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    column-gap: 6rem;
-    row-gap: 2rem;
-    padding: 16rem;
-
-    .hidden {
-      opacity: 0.1;
-      cursor: default;
-    }
+    grid-template-columns: repeat(100, 1fr);
+    grid-template-rows: repeat(70, 1vh);
+    padding: 16rem 4rem;
 
     &__block {
       position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-      position: relative;
       border-radius: 2rem;
-      gap: 2rem;
-      cursor: pointer;
-      transition: all 0.5s;
-      // aspect-ratio: 3 / 1;
-      grid-column: 8 span;
+      border: solid 0.3rem $vcolor0;
+      box-sizing: border-box;
+      transform-style: preserve-3d;
+      transform: rotateX(20deg);
+      z-index: 1;
 
       &::after {
         content: "";
-        display: none;
+        filter: blur(0.5rem);
         position: absolute;
-        top: 110%;
-        left: 0;
         width: 100%;
-        height: 30%;
-        border-top-left-radius: 2rem;
-        border-top-right-radius: 2rem;
-        transition: all 0.5s;
+        height: 100%;
+        border-radius: 2rem;
+        background-color: #111;
+        transition: all 0.5s 0s;
+        transform: translateZ(-1px);
+        z-index: -1;
       }
 
-      &:hover {
-        background-color: rgba($vcolor0, 0.1);
-        box-shadow: 0 0 0 0.1rem $vcolor3;
+      @mixin block_nth($gcs, $grs, $gce, $gre, $left, $top, $bg, $close) {
+        grid-column-start: $gcs;
+        grid-row-start: $grs;
+        grid-column-end: $gce;
+        grid-row-end: $gre;
+        background-color: $bg;
+        &::after {
+          left: $left;
+          top: $top;
+        }
+        div {
+          animation: $close 1s forwards;
+          p {
+            border: solid 0.3rem $vcolor0;
+            background-color: $bg;
+          }
+        }
       }
 
-      &:hover::after {
-        display: block;
-        background-image: linear-gradient(
-          rgba($vcolor0, 0.1),
-          rgba($vcolor0, 0.08),
-          rgba($vcolor0, 0.06),
-          rgba($vcolor0, 0.04),
-          rgba($vcolor0, 0.02)
-        );
-        box-shadow: 0 -0.1rem 0 0.05rem $vcolor3;
-        filter: blur(5px);
+      &:nth-child(1) {
+        @include block_nth(1, 1, 30, 40, 8rem, -2rem, $vcolor7, close-right);
+      }
+      &:nth-child(2) {
+        @include block_nth(10, 42, 40, 70, -8rem, 2rem, $vcolor8, close-right);
+      }
+      &:nth-child(3) {
+        @include block_nth(42, 12, 62, 62, -2rem, -4rem, $vcolor6, close-left);
+        z-index: 0;
+      }
+      &:nth-child(4) {
+        @include block_nth(64, 5, 99, 35, -2rem, -4rem, $vcolor9, close-left);
+      }
+      &:nth-child(5) {
+        @include block_nth(72, 40, 105, 64, -8rem, 4rem, $vcolor7, close-left);
       }
 
       div {
-        padding-left: 1rem;
-        border-left: solid 0.1rem $vcolor9;
+        position: relative;
+        left: -0.3rem;
+        top: -0.3rem;
+        width: calc(100% + 0.6rem);
+        height: calc(100% + 0.6rem);
+        border-radius: 2rem;
+        transform-style: preserve-3d;
+        pointer-events: none;
 
-        h2 {
-          font-size: 2.6rem;
-        }
-        span {
-          font-size: 1.2rem;
-          text-align: justify;
-        }
-      }
+        transition: width 0s 1s, left 0s 1s;
 
-      .icon {
-        flex-shrink: 0;
-        margin: 1rem;
-        padding: 1rem;
-        background-color: rgba($vcolor0, 0.7);
-        border-radius: 100%;
-        width: 8rem;
-        height: 8rem;
-
-        svg {
+        p {
+          position: relative;
+          left: 0;
           width: 100%;
           height: 100%;
-          .pawn-top {
-            transition: all 0.3s;
-          }
-          .pawn-mid-top {
-            transition: all 0.3s;
-          }
-          .pawn-mid-bot {
-            transition: all 0.3s;
-          }
-          .pawn-bot {
-            transition: all 0.3s;
-          }
-          .table-wp-1 {
-            transition: all 0.3s;
-          }
-          .table-wp-2 {
-            transition: all 0.3s;
-            transition-delay: 0.1s;
-          }
-          .table-bp-1 {
-            transition: all 0.3s;
-            transition-delay: 0.2s;
-          }
-          .table-bp-2 {
-            transition: all 0.3s;
-            transition-delay: 0.3s;
-          }
-          .rank-1 {
-            opacity: 0;
-            transition: all 0.3s;
-          }
-          .rank-2 {
-            opacity: 0;
-            transition: all 0.3s;
-            transition-delay: 0.15s;
-          }
-          .rank-3 {
-            opacity: 0;
-            transition: all 0.3s;
-            transition-delay: 0.3s;
-          }
-          .chart-circle {
-            animation: chart-back 0.3s forwards;
-            animation-timing-function: linear;
-          }
+          border-radius: 2rem;
+          transition: all 0s 1s;
         }
       }
-    }
 
-    .active > .icon {
-      .pawn-top {
-        transform: translateY(-10%);
-      }
-      .pawn-mid-top {
-        transform: translateY(-5%);
-      }
-      .pawn-mid-bot {
-        transform: translateY(5%);
-      }
-      .pawn-bot {
-        transform: translateY(10%);
-      }
-      .table-wp-1 {
-        transform: translateY(-10%);
-      }
-      .table-wp-2 {
-        transform: translateY(-10%);
-      }
-      .table-bp-1 {
-        transform: translateY(-10%);
-      }
-      .table-bp-2 {
-        transform: translateY(-10%);
-      }
-      .rank-1 {
-        opacity: 1;
-      }
-      .rank-2 {
-        opacity: 1;
-      }
-      .rank-3 {
-        opacity: 1;
-      }
-      .chart-circle {
-        animation: chart 0.3s forwards;
-        animation-timing-function: linear;
-      }
-
-      @keyframes chart {
+      @keyframes close-left {
         0% {
-          transform: translate(0%, 0%);
-        }
-        25% {
-          transform: translate(10%, -20%);
-        }
-        50% {
-          transform: translate(20%, -40%);
-        }
-        75% {
-          transform: translate(30%, -20%);
+          transform: rotateY(-180deg);
         }
         100% {
-          transform: translate(40%, -60%);
+          transform: rotateY(0deg);
         }
       }
-
-      @keyframes chart-back {
-        100% {
-          transform: translate(0%, 0%);
-        }
+      @keyframes close-right {
         0% {
-          transform: translate(40%, -60%);
+          transform: rotateY(180deg);
+        }
+        100% {
+          transform: rotateY(0deg);
         }
       }
     }
-  }
 
-  .expand {
-    display: none;
-    position: absolute;
-    top: calc(50% + 3rem);
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 50%;
-    height: 50%;
-    z-index: 2;
-    background-color: rgba($vcolor0, 0.1);
-    box-shadow: 0 0 0 0.1rem $vcolor3;
-    border-radius: 2rem;
-    overflow: hidden;
-    padding: 3rem;
-    animation: expand 0.5s;
-
-    h2 {
-      font-size: 2.6rem;
-      border-bottom: solid 0.3rem $vcolor9;
+    .prev-active {
+      z-index: 2;
     }
-    span {
-      font-size: 1.2rem;
-      text-align: center;
-    }
-  }
 
-  .expand-active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10%;
-    cursor: pointer;
-  }
+    @mixin active($left_div, $left_p, $open) {
+      z-index: 3;
+      &::after {
+        width: 200%;
+        transition: all 0.5s 0.25s;
+      }
+      &:nth-child(1) {
+        cursor: pointer;
+      }
+      &:nth-child(2) {
+        cursor: pointer;
+      }
+      &:nth-child(3) {
+        transition: z-index 0s 0s;
+        &::after {
+          left: calc(-4rem - 100%);
+        }
+      }
+      &:nth-child(4) {
+        &::after {
+          left: calc(-2rem - 100%);
+        }
+      }
+      &:nth-child(5) {
+        &::after {
+          left: calc(-8rem - 100%);
+        }
+      }
 
-  @keyframes expand {
-    from {
-      width: 0%;
-      height: 0%;
+      div {
+        left: calc($left_div - 0.6rem);
+        width: calc(200% + 0.6rem);
+
+        transition: width 0s 0s, left 0s 0s;
+        animation: $open 1s forwards;
+
+        p {
+          left: $left_p;
+          width: 50%;
+          color: transparent;
+          transition: all 0s 0s;
+        }
+      }
     }
-    to {
-      width: 50%;
-      height: 50%;
+
+    .active-left {
+      @include active(-100%, 50%, open-left);
+    }
+
+    @keyframes open-left {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(-180deg);
+      }
+    }
+
+    .active-right {
+      @include active(0%, 0, open-right);
+    }
+
+    @keyframes open-right {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(180deg);
+      }
     }
   }
 }

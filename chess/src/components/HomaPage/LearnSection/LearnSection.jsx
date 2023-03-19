@@ -1,9 +1,8 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import classes from "./LearnSection.module.scss";
 
 import LearnBlock from "./LearnBlock";
-import LearnExpand from "./LearnExpand";
 
 function LearnSection() {
   const exp = {
@@ -32,8 +31,7 @@ function LearnSection() {
       "Another important aspect of improving your chess skills is practice. Regularly playing against other players, whether in person or online, can help you develop your tactical and strategic abilities. You can also practice on your own by solving puzzles and working through different scenarios.",
     ],
   };
-  const expandRef = useRef(null);
-  const blockRef = useRef(null);
+
   const [expandContent, setExpandContent] = useState({
     title: "",
     text1: "",
@@ -41,108 +39,56 @@ function LearnSection() {
     text3: "",
   });
 
-  const onExpandContent = (event) => {
-    setExpandContent({
-      title: exp[event][0],
-      text1: exp[event][1],
-      text2: exp[event][2],
-      text3: exp[event][3],
-    });
-  };
+  // const onExpandContent = (event) => {
+  //   setExpandContent({
+  //     title: exp[event][0],
+  //     text1: exp[event][1],
+  //     text2: exp[event][2],
+  //     text3: exp[event][3],
+  //   });
+  // };
 
-  const onExpanClose = () => {
-    expandRef.current.classList.remove(classes["expand-active"]);
-    const childs = blockRef.current.children;
-    for (let i = 0; i < childs.length; i++) {
-      childs[i].classList.remove(classes.hidden);
+  const blocks = [0, 0, 0, 0, 0];
+
+  const [prevBlock, setPrevBlock] = useState(null);
+  const onExpandContent = (event, index) => {
+    const openLeft = event.currentTarget.classList.contains(
+      classes["active-left"]
+    );
+    const openRight = event.currentTarget.classList.contains(
+      classes["active-right"]
+    );
+
+    if (prevBlock) {
+      prevBlock.classList.remove(classes["active-left"]);
+      prevBlock.classList.remove(classes["active-right"]);
+      prevBlock.classList.add(classes["prev-active"]);
+      setTimeout(() => {
+        prevBlock.classList.remove(classes["prev-active"]);
+      }, 1000);
     }
-  };
 
-  const blocks = [];
-  for (let i = 0; i < 6; i++) {
-    if (i % 2 == 1) {
-      blocks.push(Math.floor(Math.random() * (5 - blocks[i - 1])));
+    if (!openRight && index < 2) {
+      event.currentTarget.classList.add(classes["active-right"]);
+      setPrevBlock(event.currentTarget);
+    } else if (!openLeft && index > 1) {
+      event.currentTarget.classList.add(classes["active-left"]);
+      setPrevBlock(event.currentTarget);
     } else {
-      blocks.push(Math.floor(Math.random() * 5));
+      setPrevBlock(null);
     }
-  }
-
-  const makeBlocks = (count) => {
-    let divs = [];
-    for (let i = 0; i < count; i++) {
-      divs.push(<div />);
-    }
-    return divs;
   };
 
   return (
     <section id="learn" className={classes.learnSec}>
-      <LearnExpand
-        expandRef={expandRef}
-        expandContent={expandContent}
-        onExpanClose={onExpanClose}
-      />
-
-      <div className={classes.learn} ref={blockRef}>
+      <div className={classes.learn}>
         {blocks.map((count, index) => (
-          <>
-            {makeBlocks(count)}
-            <LearnBlock
-              key={index}
-              expandRef={expandRef}
-              onExpandContent={onExpandContent}
-              icon="table"
-              title="Play"
-              text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity."
-            />
-          </>
+          <LearnBlock
+            key={index}
+            index={index}
+            onExpandContent={onExpandContent}
+          />
         ))}
-
-        {/* <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="table"
-          title="Play"
-          text="Chess is a game that has been played for centuries, and its enduring popularity is a testament to its depth and complexity."
-        />
-        <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="pawn"
-          title="Learn"
-          text="Learning to play chess is a rewarding experience that can benefit you in many ways."
-        />
-
-        <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="rank"
-          title="Compete"
-          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels."
-        />
-        <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="chart"
-          title="Improve"
-          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding."
-        />
-
-        <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="rank"
-          title="Compete"
-          text="Competing in chess can be a thrilling and rewarding experience for players of all skill levels."
-        />
-
-        <LearnBlock
-          expandRef={expandRef}
-          onExpandContent={onExpandContent}
-          icon="chart"
-          title="Improve"
-          text="Improving your chess skills is an ongoing journey that can be both challenging and rewarding."
-        /> */}
       </div>
     </section>
   );
