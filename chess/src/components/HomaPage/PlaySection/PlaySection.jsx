@@ -58,6 +58,7 @@ function PlaySection(props) {
           </div>
         ))}
       </div>
+      <div className={classes.decorator} />
     </section>
   );
 }

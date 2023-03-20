@@ -3,49 +3,27 @@
 .play {
   position: relative;
   width: 100vw;
-  height: 100vh;
+  height: calc(80vh + 2 * 10rem);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10%;
   background-color: #000;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -20%;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    display: block;
-    background-color: #000;
-    border-top-right-radius: 20rem;
-    box-shadow: 1rem -1rem 0 $vcolor9;
-  }
-  &::before {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 20vh;
-    display: block;
-    background-color: #000;
-    border-bottom-left-radius: 20rem;
-    box-shadow: -1rem 1rem 0 $vcolor9;
-  }
+  padding: 10rem 0;
+  border-top-right-radius: 20rem;
+  border-bottom-left-radius: 20rem;
+  box-shadow: 0 0 0 1rem $vcolor9;
 
   &__content {
     position: absolute;
     width: 80%;
-    height: 80%;
+    height: 80vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     z-index: 1;
     border-radius: 6rem;
     overflow: hidden;
-    transform: translateY(16%);
+    background-color: rgba(red, 0.2);
 
     &__cube {
       position: relative;
@@ -89,12 +67,11 @@
 
   &__background {
     width: 80%;
-    height: 80%;
+    height: 100%;
     display: flex;
     justify-content: space-evenly;
     border-radius: 6rem;
     overflow: hidden;
-    transform: translateY(16%);
 
     .active0 {
       transform: rotateY(0deg);
@@ -183,6 +160,27 @@
       &:nth-child(4) {
         @include left_shift(-300%);
       }
+    }
+  }
+
+  .decorator {
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    bottom: -20rem;
+    width: 20rem;
+    height: 20rem;
+    background-color: #000;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 10;
+      width: 20rem;
+      height: 20rem;
+      background-color: $gcolor9;
+      border-top-right-radius: 20rem;
+      border-top: solid 1rem $vcolor9;
+      border-right: solid 1rem $vcolor9;
     }
   }
 }

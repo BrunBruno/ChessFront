@@ -1,4 +1,158 @@
+@import "../../../App.module.scss";
+
 .faq {
+  position: relative;
   width: 100vw;
   height: 100vh;
+  margin-top: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  &__block {
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+    background-color: $vcolor9;
+    padding: 2rem;
+    gap: 2rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    transition: width 1s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+
+    &:not(.expand) {
+      &::after {
+        content: "";
+        position: absolute;
+        opacity: 0;
+        transition: opacity 1s;
+        right: 1rem;
+        border-top: solid 2rem #0000;
+        border-bottom: solid 2rem #0000;
+        border-left: solid 2rem $vcolor0;
+      }
+      &:hover {
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    .camera {
+      position: relative;
+      width: 0;
+      height: 0;
+      aspect-ratio: 1 / 1;
+      border-radius: 100%;
+      transition: all 1s;
+      background: radial-gradient(
+        circle at 50% 50%,
+        rgba($vcolor9, 1),
+        rgba($vcolor8, 1),
+        rgba($vcolor7, 1),
+        rgba($vcolor6, 1),
+        rgba($vcolor5, 1),
+        rgba($vcolor4, 1),
+        rgba($vcolor3, 1),
+        rgba($vcolor2, 1),
+        rgba($vcolor1, 1),
+        rgba($vcolor0, 1),
+        #0000,
+        #0000
+      );
+      .string {
+        p {
+          position: absolute;
+          left: 50%;
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  .bloc-style-1 {
+    width: 35rem;
+    background-color: $vcolor9;
+  }
+  .bloc-style-2 {
+    width: 40rem;
+    background-color: $vcolor8;
+  }
+  .bloc-style-3 {
+    width: 45rem;
+    background-color: $vcolor7;
+  }
+  .bloc-style-4 {
+    width: 50rem;
+    background-color: $vcolor6;
+  }
+
+  .expand {
+    width: 80%;
+    .camera {
+      width: 8rem;
+      height: 8rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .string {
+        position: absolute;
+        z-index: 99;
+        height: 0.5rem;
+        border-radius: 0.5rem;
+        // background: linear-gradient(to left, blue, red);
+        pointer-events: none;
+        p {
+          width: 0.5rem;
+          height: 0.5rem;
+          background-color: white;
+          border-radius: 100%;
+          opacity: 1;
+          left: 0;
+          transition: left 3s 1s, opacity 0s 1s;
+          animation: pulse 3s 1s forwards;
+        }
+        @keyframes pulse {
+          0% {
+            transform: translateY(0, 0);
+          }
+          25% {
+            transform: translate(-random(500) + px, -random(500) + px);
+          }
+          50% {
+            transform: translate(random(500) + px, random(500) + px);
+          }
+          75% {
+            transform: translate(-random(500) + px, -random(500) + px);
+          }
+          100% {
+            transform: translate(0, 0);
+          }
+        }
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1px;
+    height: 1px;
+    background-color: rgba(#000, 0.7);
+    border-radius: 4rem;
+    transition: all 1s;
+  }
+
+  .expanded-content {
+    width: 80%;
+    height: 40%;
+  }
 }
