@@ -3,13 +3,25 @@ import { useEffect, useRef, useState } from "react";
 import classes from "./FAQSection.module.scss";
 
 function FAQSection() {
-  const faqs = [0, 0, 0, 0, 0, 0];
+  const faqs = [
+    "Question1",
+    "Question2",
+    "Question3",
+    "Question4",
+    "Question5",
+    "Question6",
+  ];
   const faqBlockRef = useRef([]);
   const faqCameraRef = useRef([]);
   const faqContentRef = useRef(null);
+  const faqHoloRef = useRef(null);
   const [prevBlock, setPrevBlock] = useState(null);
-
-  const [cameraContent, setCameraContent] = useState({
+  const [leftDotStyle, setLeftDotStyle] = useState({
+    transform: "",
+    width: "0",
+    left: "0",
+  });
+  const [rightDotStyle, setRightDotStyle] = useState({
     transform: "",
     width: "0",
     left: "0",
@@ -42,40 +54,72 @@ function FAQSection() {
       event.currentTarget.classList.add(classes.expand);
       setPrevBlock(event.currentTarget);
       setTimeout(() => {
-        const content = faqContentRef.current.getBoundingClientRect();
+        const content = faqHoloRef.current.getBoundingClientRect();
         const camera = faqCameraRef.current[index].getBoundingClientRect();
+
         const camx = camera.left + camera.width / 2;
         const camy = camera.top + camera.height / 2;
-        const conx = content.left;
-        const cony = content.top;
-        const d = Math.sqrt(
-          Math.pow(conx - camx, 2) + Math.pow(cony - camy, 2)
-        );
-        const a = (cony - camy) / (conx - camx);
-        const alfa = (Math.atan(a) * 180) / Math.PI;
 
-        setCameraContent(() => {
+        const conx1 = content.left;
+        const conx2 = content.left + content.width;
+        const cony = content.top;
+
+        const d = (x1, x2, y1, y2) => {
+          return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+        };
+        const d1 = d(conx1, camx, cony, camy);
+        const d2 = d(conx2, camx, cony, camy);
+
+        const a = (x1, x2, y1, y2) => {
+          return (Math.atan((y2 - y1) / (x2 - x1)) * 180) / Math.PI;
+        };
+
+        const a1 = a(conx1, camx, cony, camy);
+        const a2 = a(conx2, camx, cony, camy);
+
+        setLeftDotStyle(() => {
           const newContent = [];
           newContent[index] = {
-            transform: `rotate(${alfa}deg)`,
-            width: `${2 * d}px`,
-            left: `-${d - camera.width / 2}px`,
+            transform: `rotate(${a1}deg)`,
+            width: `${2 * d1}px`,
+            left: `-${d1 - camera.width / 2}px`,
+          };
+          return newContent;
+        });
+        setRightDotStyle(() => {
+          const newContent = [];
+          newContent[index] = {
+            transform: `rotate(${a2}deg)`,
+            width: `${2 * d2}px`,
+            left: `-${d2 - camera.width / 2}px`,
           };
           return newContent;
         });
 
         setTimeout(() => {
           faqContentRef.current.classList.add(classes["expanded-content"]);
-        }, 3000);
-      }, 1000);
+        }, 500);
+      }, 500);
     } else {
       setPrevBlock(null);
     }
   };
 
+  const onExpandClose = () => {
+    faqContentRef.current.classList.remove(classes["expanded-content"]);
+    prevBlock.classList.remove(classes.expand);
+    setPrevBlock(null);
+  };
+
   return (
     <section id="faq" className={classes.faq}>
-      <div ref={faqContentRef} className={classes.faq__content}></div>
+      <div ref={faqHoloRef} className={classes.faq__holo}>
+        <div
+          ref={faqContentRef}
+          className={classes.faq__holo__content}
+          onClick={onExpandClose}
+        ></div>
+      </div>
       {faqs.map((faq, index) => (
         <div
           key={index}
@@ -83,18 +127,16 @@ function FAQSection() {
           className={classes.faq__block}
           onClick={(event) => onExpandContent(event, index)}
         >
-          <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam
-            veniam ipsam harum culpa illo quaerat eveniet nesciunt perspiciatis!
-            Omnis atque minus a obcaecati laborum consequuntur consequatur
-            cumque porro nulla tempora.
-          </p>
+          <div className={classes.question}>{faq}</div>
           <div
             ref={(event) => (faqCameraRef.current[index] = event)}
             className={classes.camera}
           >
-            <div className={classes.string} style={cameraContent[index]}>
-              <p />
+            <div className={classes.string} style={leftDotStyle[index]}>
+              <p className={classes["p-left"]} />
+            </div>
+            <div className={classes.string} style={rightDotStyle[index]}>
+              <p className={classes["p-right"]} />
             </div>
           </div>
         </div>

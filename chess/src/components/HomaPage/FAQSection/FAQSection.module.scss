@@ -5,9 +5,14 @@
   width: 100vw;
   height: 100vh;
   margin-top: 10rem;
+  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  background-image: url("images/PawnIconBG.png");
+  background-repeat: no-repeat;
+  background-size: 30% 80%;
+  background-position: 75% 50%;
 
   &__block {
     position: relative;
@@ -18,18 +23,19 @@
     gap: 2rem;
     border-top-right-radius: 2rem;
     border-bottom-right-radius: 2rem;
-    transition: width 1s;
+    transition: width 0.5s;
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
+    box-shadow: 0.5rem 0.75rem 0.5rem 0.5rem #000;
 
     &:not(.expand) {
       &::after {
         content: "";
         position: absolute;
         opacity: 0;
-        transition: opacity 1s;
+        transition: opacity 0.5s;
         right: 1rem;
         border-top: solid 2rem #0000;
         border-bottom: solid 2rem #0000;
@@ -41,6 +47,15 @@
         }
       }
     }
+    .question {
+      width: 28rem;
+      height: 100%;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      font-size: 2rem;
+      overflow: hidden;
+    }
 
     .camera {
       position: relative;
@@ -48,7 +63,7 @@
       height: 0;
       aspect-ratio: 1 / 1;
       border-radius: 100%;
-      transition: all 1s;
+      transition: all 0.5s;
       background: radial-gradient(
         circle at 50% 50%,
         rgba($vcolor9, 1),
@@ -65,9 +80,14 @@
         #0000
       );
       .string {
-        p {
+        .p-left {
           position: absolute;
           left: 50%;
+          opacity: 0;
+        }
+        .p-right {
+          position: absolute;
+          right: 50%;
           opacity: 0;
         }
       }
@@ -104,55 +124,64 @@
         position: absolute;
         z-index: 99;
         height: 0.5rem;
-        border-radius: 0.5rem;
-        // background: linear-gradient(to left, blue, red);
         pointer-events: none;
-        p {
+        @mixin p() {
           width: 0.5rem;
           height: 0.5rem;
-          background-color: white;
+          background-color: $vcolor0;
           border-radius: 100%;
           opacity: 1;
-          left: 0;
-          transition: left 3s 1s, opacity 0s 1s;
-          animation: pulse 3s 1s forwards;
+          animation: open-dot 0.5s 0.5s forwards;
         }
-        @keyframes pulse {
-          0% {
-            transform: translateY(0, 0);
+        .p-left {
+          @include p;
+          left: 0;
+          transition: left 0.5s 0.5s, opacity 0s 0.5s;
+        }
+        .p-right {
+          @include p;
+          right: 0;
+          transition: right 0.5s 0.5s, opacity 0s 0.5s;
+        }
+        @keyframes open-dot {
+          from {
+            width: 0.5rem;
+            height: 0.5rem;
           }
-          25% {
-            transform: translate(-random(500) + px, -random(500) + px);
-          }
-          50% {
-            transform: translate(random(500) + px, random(500) + px);
-          }
-          75% {
-            transform: translate(-random(500) + px, -random(500) + px);
-          }
-          100% {
-            transform: translate(0, 0);
+          to {
+            width: 2rem;
+            height: 2rem;
           }
         }
       }
     }
   }
 
-  &__content {
+  &__holo {
     position: absolute;
-    z-index: 10;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 1px;
-    height: 1px;
-    background-color: rgba(#000, 0.7);
-    border-radius: 4rem;
-    transition: all 1s;
-  }
-
-  .expanded-content {
+    z-index: 1;
     width: 80%;
-    height: 40%;
+    height: 60%;
+    pointer-events: none;
+
+    &__content {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      height: 0;
+      background-color: rgba(#000, 0.7);
+      border-bottom-left-radius: 4rem;
+      border-bottom-right-radius: 4rem;
+      transition: all 0.5s;
+    }
+
+    .expanded-content {
+      height: 100%;
+      pointer-events: all;
+      border: solid 1rem $vcolor1;
+    }
   }
 }
