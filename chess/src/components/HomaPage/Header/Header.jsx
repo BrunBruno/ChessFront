@@ -5,14 +5,15 @@ import classes from "./Header.module.scss";
 import HeaderIcons from "./HeaderIcons";
 
 function Header(props) {
+  const indicators = ["home", "learn", "play", "faq"];
   const headerRef = useRef(null);
   useEffect(() => {
     window.addEventListener("scroll", () => {
       const distance =
-        window.pageYOffset - props.platSectionRef.current.offsetTop * 0.9;
+        window.pageYOffset - props.playSectionRef.current.offsetTop;
       if (
         distance > 0 &&
-        distance < props.platSectionRef.current.offsetHeight
+        distance < props.playSectionRef.current.offsetHeight
       ) {
         headerRef.current.classList.add(classes["trans-header"]);
       } else {
@@ -30,39 +31,37 @@ function Header(props) {
   return (
     <header className={classes.header} ref={headerRef}>
       <div className={classes.header__background}>
-        <div className={classes.space} />
-        <div className={classes.space2} />
-        <div className={classes.space} />
+        <div className={classes.header__background__bottom} />
+        <div className={classes.header__background__middle} />
+        <div className={classes.header__background__bottom} />
       </div>
-      <div className={classes.header__logo}>
+      <div
+        className={classes.header__logo}
+        onClick={() => {
+          location.reload();
+        }}
+      >
         <img src="images/logo.png" />
       </div>
 
       <nav className={classes.header__navigation}>
-        <a href="#" className={classes.active}>
-          <span className={classes.text}>HOME</span>
-          <span className={classes.icon}>
-            <HeaderIcons icon="home" />
-          </span>
-        </a>
-        <a href="#learn">
-          <span className={classes.text}>LEARN</span>
-          <span className={classes.icon}>
-            <HeaderIcons icon="learn" />
-          </span>
-        </a>
-        <a href="#play">
-          <span className={classes.text}>PLAY</span>
-          <span className={classes.icon}>
-            <HeaderIcons icon="play" />
-          </span>
-        </a>
-        <a href="#faq">
-          <span className={classes.text}>FAQ</span>
-          <span className={classes.icon}>
-            <HeaderIcons icon="faq" />
-          </span>
-        </a>
+        {indicators.map((element, index) =>
+          !index ? (
+            <a href={"#" + element} key={index} className={classes.active}>
+              <span className={classes.text}>{element.toUpperCase()}</span>
+              <span className={classes.icon}>
+                <HeaderIcons icon={element} />
+              </span>
+            </a>
+          ) : (
+            <a href={"#" + element} key={index}>
+              <span className={classes.text}>{element.toUpperCase()}</span>
+              <span className={classes.icon}>
+                <HeaderIcons icon={element} />
+              </span>
+            </a>
+          )
+        )}
         <div className={classes.indicator}></div>
       </nav>
 

@@ -34,7 +34,7 @@ function PlaySection(props) {
   };
 
   return (
-    <section id="play" ref={props.platSectionRef} className={classes.play}>
+    <section id="play" ref={props.playSectionRef} className={classes.play}>
       <div className={classes.play__content}>
         {divs.map((div, index) => (
           <div

@@ -10,53 +10,64 @@ import PlaySection from "./PlaySection/PlaySection";
 import FAQSection from "./FAQSection/FAQSection";
 
 function HomePage() {
-  const heroRef = useRef(null);
-  const learnRef = useRef(null);
-  const playRef = useRef(null);
-  const faqRef = useRef(null);
-
-  const platSectionRef = useRef(null);
+  const navRef = useRef([]);
+  const playSectionRef = useRef(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          let elements = document.getElementsByTagName("a");
-          for (let i = 0; i < elements.length; i++) {
-            elements[i].classList.remove(clsHeader.active);
+    if (navRef) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let elements = document.getElementsByTagName("a");
+            for (let i = 0; i < elements.length; i++) {
+              elements[i].classList.remove(clsHeader.active);
+            }
+            if (entry.target.id === "obs-hero") {
+              elements[0].classList.add(clsHeader.active);
+            }
+            if (entry.target.id === "obs-learn") {
+              elements[1].classList.add(clsHeader.active);
+            }
+            if (entry.target.id === "obs-play") {
+              elements[2].classList.add(clsHeader.active);
+            }
+            if (entry.target.id === "obs-faq") {
+              elements[3].classList.add(clsHeader.active);
+            }
           }
-          if (entry.target.id === "obs-hero") {
-            elements[0].classList.add(clsHeader.active);
-          }
-          if (entry.target.id === "obs-learn") {
-            elements[1].classList.add(clsHeader.active);
-          }
-          if (entry.target.id === "obs-play") {
-            elements[2].classList.add(clsHeader.active);
-          }
-          if (entry.target.id === "obs-faq") {
-            elements[3].classList.add(clsHeader.active);
-          }
-        }
+        });
       });
-    });
 
-    observer.observe(heroRef.current);
-    observer.observe(learnRef.current);
-    observer.observe(playRef.current);
-    observer.observe(faqRef.current);
-  }, []);
+      navRef.current.forEach((element) => observer.observe(element));
+    }
+  }, [navRef]);
 
   return (
     <main>
-      <Header platSectionRef={platSectionRef} />
-      <div id="obs-hero" ref={heroRef} className={classes.observe} />
+      <Header playSectionRef={playSectionRef} />
+      <div
+        id="obs-hero"
+        ref={(event) => (navRef.current[0] = event)}
+        className={classes.observe}
+      />
       <HeroSection />
-      <div id="obs-learn" ref={learnRef} className={classes.observe} />
+      <div
+        id="obs-learn"
+        ref={(event) => (navRef.current[1] = event)}
+        className={classes.observe}
+      />
       <LearnSection />
-      <div id="obs-play" ref={playRef} className={classes.observe} />
-      <PlaySection platSectionRef={platSectionRef} />
-      <div id="obs-faq" ref={faqRef} className={classes.observe} />
+      <div
+        id="obs-play"
+        ref={(event) => (navRef.current[2] = event)}
+        className={classes.observe}
+      />
+      <PlaySection playSectionRef={playSectionRef} />
+      <div
+        id="obs-faq"
+        ref={(event) => (navRef.current[3] = event)}
+        className={classes.observe}
+      />
       <FAQSection />
       <footer className={classes.footer}>Footer</footer>
     </main>

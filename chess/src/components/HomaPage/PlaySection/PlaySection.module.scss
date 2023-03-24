@@ -1,4 +1,4 @@
-@import "../../../App.module.scss";
+@import "../../../Variables.scss";
 
 .play {
   position: relative;
@@ -9,8 +9,8 @@
   align-items: center;
   background-color: #000;
   padding: 10rem 0;
-  border-top-right-radius: 20rem;
-  border-bottom-left-radius: 20rem;
+  border-top-right-radius: $large_br;
+  border-bottom-left-radius: $large_br;
   box-shadow: 0 0 0 1rem $vcolor9;
 
   &__content {
@@ -21,7 +21,7 @@
     justify-content: space-evenly;
     align-items: center;
     z-index: 1;
-    border-radius: 6rem;
+    border-radius: $medium_br;
     overflow: hidden;
 
     &__cube {
@@ -44,12 +44,12 @@
       }
 
       &:nth-child(1) {
-        border-bottom-left-radius: 6rem;
-        border-top-left-radius: 6rem;
+        border-bottom-left-radius: $medium_br;
+        border-top-left-radius: $medium_br;
       }
       &:nth-child(4) {
-        border-bottom-right-radius: 6rem;
-        border-top-right-radius: 6rem;
+        border-bottom-right-radius: $medium_br;
+        border-top-right-radius: $medium_br;
       }
       &:hover {
         background-color: rgba(#000, 0.5);
@@ -69,7 +69,7 @@
     height: 100%;
     display: flex;
     justify-content: space-evenly;
-    border-radius: 6rem;
+    border-radius: $medium_br;
     overflow: hidden;
 
     .active0 {
@@ -170,6 +170,7 @@
     width: 20rem;
     height: 20rem;
     background-color: #000;
+    pointer-events: none;
     &::before {
       content: "";
       position: absolute;
@@ -177,7 +178,7 @@
       width: 20rem;
       height: 20rem;
       background-color: $gcolor9;
-      border-top-right-radius: 20rem;
+      border-top-right-radius: $large_br;
       border-top: solid 1rem $vcolor9;
       border-right: solid 1rem $vcolor9;
     }

@@ -2,13 +2,13 @@
 
 .faq {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   width: 100vw;
   height: 100vh;
   margin-top: 10rem;
   margin-bottom: 10rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   background-image: url("images/PawnIconBG.png");
   background-repeat: no-repeat;
   background-size: 30% 80%;
@@ -16,43 +16,45 @@
 
   &__block {
     position: relative;
-    height: 10rem;
-    width: 10rem;
-    background-color: $vcolor9;
-    padding: 2rem;
-    gap: 2rem;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    transition: width 0.5s;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 10rem;
+    width: 10rem;
+    padding: 2rem;
+    gap: 2rem;
+    background-color: $vcolor9;
+    box-shadow: 0.5rem 0.75rem 0.5rem 0.5rem #111;
+    border-top-right-radius: $small_br;
+    border-bottom-right-radius: $small_br;
+    transition: width 0.5s;
     cursor: pointer;
-    box-shadow: 0.5rem 0.75rem 0.5rem 0.5rem #000;
 
     &:not(.expand) {
       &::after {
         content: "";
         position: absolute;
-        opacity: 0;
-        transition: opacity 0.5s;
         right: 1rem;
         border-top: solid 2rem #0000;
         border-bottom: solid 2rem #0000;
         border-left: solid 2rem $vcolor0;
+        opacity: 0;
+        transition: opacity 0.5s;
       }
+
       &:hover {
         &::after {
           opacity: 1;
         }
       }
     }
+
     .question {
-      width: 28rem;
-      height: 100%;
       display: flex;
       justify-content: left;
       align-items: center;
+      width: 28rem;
+      height: 100%;
       font-size: 2rem;
       overflow: hidden;
     }
@@ -79,12 +81,14 @@
         #0000,
         #0000
       );
+
       .string {
         .p-left {
           position: absolute;
           left: 50%;
           opacity: 0;
         }
+
         .p-right {
           position: absolute;
           right: 50%;
@@ -98,14 +102,17 @@
     width: 35rem;
     background-color: $vcolor9;
   }
+
   .bloc-style-2 {
     width: 40rem;
     background-color: $vcolor8;
   }
+
   .bloc-style-3 {
     width: 45rem;
     background-color: $vcolor7;
   }
+
   .bloc-style-4 {
     width: 50rem;
     background-color: $vcolor6;
@@ -113,18 +120,20 @@
 
   .expand {
     width: 80%;
+
     .camera {
-      width: 8rem;
-      height: 8rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 8rem;
+      height: 8rem;
 
       .string {
         position: absolute;
         z-index: 99;
         height: 0.5rem;
         pointer-events: none;
+
         @mixin p() {
           width: 0.5rem;
           height: 0.5rem;
@@ -133,16 +142,19 @@
           opacity: 1;
           animation: open-dot 0.5s 0.5s forwards;
         }
+
         .p-left {
           @include p;
           left: 0;
           transition: left 0.5s 0.5s, opacity 0s 0.5s;
         }
+
         .p-right {
           @include p;
           right: 0;
           transition: right 0.5s 0.5s, opacity 0s 0.5s;
         }
+
         @keyframes open-dot {
           from {
             width: 0.5rem;
@@ -173,8 +185,8 @@
       width: 100%;
       height: 0;
       background-color: rgba(#000, 0.7);
-      border-bottom-left-radius: 4rem;
-      border-bottom-right-radius: 4rem;
+      border-bottom-left-radius: $medium_br;
+      border-bottom-right-radius: $medium_br;
       transition: all 0.5s;
     }
 

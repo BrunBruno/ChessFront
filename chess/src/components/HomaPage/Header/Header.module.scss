@@ -1,4 +1,4 @@
-@import "../../../App.module.scss";
+@import "../../../Variables.scss";
 
 .header {
   position: fixed;
@@ -23,16 +23,17 @@
     left: 0;
     transition: all 0.5s;
 
-    .space {
+    &__bottom {
       display: inline-flex;
       width: calc((100% - $width) / 2);
+      transition: all 0.5s;
     }
-    .space2 {
+    &__middle {
       display: inline-flex;
       width: $width;
       height: 2rem;
-      border-bottom-right-radius: 2rem;
-      border-bottom-left-radius: 2rem;
+      border-bottom-right-radius: $small_br;
+      border-bottom-left-radius: $small_br;
       transition: all 0.5s;
     }
   }
@@ -95,6 +96,7 @@
         svg.icon {
           width: 50%;
           height: 50%;
+          aspect-ratio: 1 / 1;
         }
       }
 
@@ -137,12 +139,20 @@
     padding: 0.8rem 1.6rem;
 
     button {
-      @include def-button(2 * 0.4rem + 1.4rem);
       z-index: inherit;
       width: 44%;
       padding: 0.4rem 0.8rem;
+      background-color: $vcolor9;
+      color: $vcolor0;
+      border: solid 0.1rem $gcolor0;
+      border-radius: calc(2 * 0.4rem + 1.4rem);
+      overflow: hidden;
+      outline: none;
+      font-family: Bradley Hand, cursive;
       font-size: 1.6rem;
       text-overflow: ellipsis;
+      text-decoration: none;
+      text-align: center;
 
       &:hover {
         background-color: $vcolor5;
@@ -158,21 +168,24 @@
 .header-sticky {
   background-color: $vcolor9;
   padding-top: 1.6rem;
+  transition: all 0.5s;
   .indicator {
     border: solid 0.6rem $vcolor9;
     background-color: $gcolor9;
   }
   .header__background {
     top: 8rem;
-    .space {
+    &__bottom {
       border-top: solid 0.5rem $vcolor7;
       vertical-align: top;
+      transition: all 0.5s;
     }
-    .space2 {
+    &__middle {
       background-color: $vcolor9;
       border: solid 0.5rem $vcolor7;
       border-top: none;
       height: 2rem;
+      transition: all 0.5s;
     }
   }
 
@@ -183,16 +196,19 @@
 
 .trans-header {
   background-color: #0000;
+  transition: all 0.5s;
   .indicator {
     border: solid 0.3rem $gcolor8;
   }
   .header__background {
-    .space {
+    &__bottom {
       border: none;
+      transition: all 0.5s;
     }
-    .space2 {
+    &__middle {
       background-color: #0000;
       border: none;
+      transition: all 0.5s;
     }
   }
 }

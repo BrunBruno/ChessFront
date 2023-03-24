@@ -2,7 +2,7 @@ import classes from "./HeroSection.module.scss";
 
 function HeroSection(props) {
   return (
-    <section id="hero" className={classes.hero}>
+    <section id="home" className={classes.hero}>
       <div className={classes.hero__content}>
         <div className={classes.hero__content__intro}>
           <h1>BETTER CHESS</h1>

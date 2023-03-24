@@ -21,3 +21,18 @@ $gcolor6: #868e96;
 $gcolor7: #495057;
 $gcolor8: #343a40;
 $gcolor9: #212529;
+
+// fonts
+
+// border radius
+$small_br: 2rem;
+$medium_br: 4rem;
+$large_br: 16rem;
+
+@mixin shadow {
+  position: absolute;
+  z-index: -1;
+  background-color: #111;
+  pointer-events: none;
+  filter: blur(0.5rem);
+}

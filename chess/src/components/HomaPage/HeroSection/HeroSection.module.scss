@@ -1,4 +1,4 @@
-@import "../../../App.module.scss";
+@import "../../../Variables.scss";
 
 .hero {
   width: 100%;
@@ -7,44 +7,41 @@
   &__content {
     width: 100%;
     height: 90%;
-
-    border-bottom-left-radius: 20rem;
-    background: linear-gradient(#0000 0%, #000 100%),
+    border-bottom-left-radius: $large_br;
+    background-image: linear-gradient(#0000 0%, #000 100%),
       url("images/hero-background3.jpg");
     background-color: #000;
-
     background-size: contain;
     background-repeat: no-repeat;
     box-shadow: -1rem 1rem 0 $vcolor9;
 
     &__intro {
-      background-color: rgba($gcolor9, 0.3);
       position: absolute;
-      padding: 2rem;
       left: 30%;
       top: 50%;
       transform: translate(-50%, -50%);
       width: 38%;
-      border-radius: 2rem;
+      padding: 2rem;
+      background-color: rgba($gcolor9, 0.3);
+      border-radius: $small_br;
       text-shadow: 0.1rem 0.1rem #000;
 
       h1 {
-        font-size: 3.2rem;
+        margin-bottom: 2rem;
         padding: 0.8rem 1.6rem;
         text-align: center;
-        margin-bottom: 2rem;
-
+        font-size: 3.2rem;
         border: 0.5rem solid #0000;
         background: conic-gradient(
               from 90deg at top 0.5rem left 0.5rem,
               #0000 90deg,
-              #fff 0
+              $gcolor0 0
             )
             0 0 / 3rem 3rem border-box no-repeat,
           conic-gradient(
               from -90deg at bottom 0.5rem right 0.5rem,
               #0000 90deg,
-              #fff 0
+              $gcolor0 0
             )
             100% 100% / 3rem 3rem border-box no-repeat;
       }
@@ -56,21 +53,31 @@
     }
 
     &__extra {
-      background-color: $vcolor7;
-      color: $gcolor0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
       position: absolute;
       top: 30%;
       right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       width: 40%;
       height: 80vh;
       padding: 6.4rem;
-      border-bottom-left-radius: 6rem;
-      border-top-left-radius: 6rem;
+      background-color: $vcolor7;
+      color: $gcolor0;
+      border-bottom-left-radius: $medium_br;
+      border-top-left-radius: $medium_br;
       border: solid 1rem $vcolor9;
       border-right: none;
+
+      &::after {
+        @include shadow;
+        content: "";
+        left: -2rem;
+        bottom: -2rem;
+        width: calc(100% + 2rem);
+        height: 100%;
+        border-bottom-left-radius: $medium_br;
+      }
     }
   }
 }
